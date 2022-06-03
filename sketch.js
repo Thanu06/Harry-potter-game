@@ -31,11 +31,6 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
- 
-      
-  
-
-
   life1=createSprite(40,50,10,10);
   life1.addImage("life1Img",lifeImg);
   life1.scale=0.3;
@@ -51,11 +46,10 @@ function setup() {
   restart=createSprite(windowWidth/2,windowHeight/2+200);
   restart.addImage(restartImg);
   restart.scale=0.5;
-  //restart.addImage(sand_timer);
   
   restart.visible = false;
 
-  player = createSprite(200, 200, 20, 50);
+  player = createSprite(125, 200, 20, 50);
   player.addImage("HP",playerImg);
   player.scale=0.5;
 
@@ -70,11 +64,7 @@ function setup() {
 
 function draw() {
   background(bgImg);
-  
-  console.log(gameState);
- 
-  
-  console.log("lives --->   "+lives);
+
   edges = createEdgeSprites();
 
   if (gameState == PLAY) 
@@ -102,7 +92,7 @@ function draw() {
 
     if (spellsGroup.isTouching(villansGroup)) 
       {
-        score = score + 1;
+        score = score + 5;
         spellsGroup.destroyEach();
         villansGroup.destroyEach();
       
@@ -143,9 +133,7 @@ function draw() {
     player.visible=false;
     restart.visible = true;
     
-    //spellsGroup.destroyEach();
-    //villansGroup.destroyEach();
-    
+  
     spellsGroup.setVelocityXEach(0);
     villansGroup.setVelocityXEach(0);
     
@@ -158,24 +146,14 @@ function draw() {
       
     }
     
-    
   }
-
-  
-  
   
   drawSprites();
   
   textSize(50);
-  text("Score: " + score, windowWidth-200, 50);
-    
-  // if (gameState==END){
-  //   textSize(60);
-  //   text("HARRY POTTER HAS BEEN CAUGHT BY LORD VOLDEMORT",100,400);
-  // }
+  text("Score: " + score, windowWidth-300, 50);
   
-  
-} // end of draw
+} 
 
 
 
@@ -198,15 +176,14 @@ function reset()
 
 
 function spawnVillans() {
-  if (frameCount % 100 == 0) {
+  if (frameCount % 80 == 0) {
     var villan = createSprite(1700, 450, 20, 20);
     villan.addImage("demantors",villanImg);
     villan.scale=0.5;
     villan.setCollider("circle",0,0,150);
     villan.velocityX = -20;
-    villan.y = random(100, 800);
+    villan.y = random(150, 700);
     
-//villan.debug=true;
     villansGroup.add(villan);
   }
 }
@@ -218,7 +195,7 @@ function createSpells() {
   spell.y = player.y;
   spell.addImage("Spell",spellImg);
   spell.setCollider("circle",0,0,20);
-//spell.debug=true;
+
   spellsGroup.add(spell);
 }
 
