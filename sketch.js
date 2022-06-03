@@ -85,9 +85,10 @@ function draw() {
         player.y = player.y + 20;
       }
 
-    if (keyWentDown("space")) 
+    if (touches.length>0 || keyWentDown("space")) 
       {
         createSpells();
+        touches=[]
       }
 
     if (spellsGroup.isTouching(villansGroup)) 
@@ -140,10 +141,10 @@ function draw() {
     spellsGroup.setLifetimeEach(-1);
     villansGroup.setLifetimeEach(-1);
 
-    if (mousePressedOver(restart)) {
+    if (touches.length>0 || mousePressedOver(restart)) {
       console.log("inside mouse pressed over function");
       reset();
-      
+      touches=[]
     }
     
   }
