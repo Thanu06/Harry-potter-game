@@ -154,7 +154,6 @@ function draw() {
     villansGroup.setLifetimeEach(-1);
 
     if (touches.length>0 || mousePressedOver(restart)) {
-      console.log("inside mouse pressed over function");
       reset();
       touches=[]
     }
@@ -173,7 +172,6 @@ function draw() {
 
 function reset()
 {
-  console.log("Reset Called");
   gameState = PLAY;
   restart.visible=false;
   score=0;
