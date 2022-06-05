@@ -13,7 +13,7 @@ var life1,life2,life3,lifeImg;
 var restart,restartImg;
 var sand_timer;
 var endImg;
-
+var up,down,upArrow,downArrow;
 function preload() {
   
   spellImg=loadImage("sparks.png");
@@ -25,6 +25,10 @@ function preload() {
   restartImg=loadImage("restart1.png");
   sand_timer=loadImage("image.png");
   endImg=loadImage("end.png");
+
+  upArrow=loadImage("up.png");
+  downArrow=loadImage("down.png");
+
 
 }
 
@@ -43,13 +47,21 @@ function setup() {
   life3.addImage("life3Img",lifeImg);
   life3.scale=0.3;
 
+  up=createSprite(windowWidth/2-650,windowHeight/2+200);
+  up.addImage(upArrow);
+  up.scale=0.3;
+
+  down=createSprite(windowWidth/2-650,windowHeight/2+300);
+  down.addImage(downArrow);
+  down.scale=0.3;
+
   restart=createSprite(windowWidth/2,windowHeight/2+200);
   restart.addImage(restartImg);
   restart.scale=0.5;
   
   restart.visible = false;
 
-  player = createSprite(125, 200, 20, 50);
+  player = createSprite(200, 200, 20, 50);
   player.addImage("HP",playerImg);
   player.scale=0.5;
 
@@ -75,12 +87,12 @@ function draw() {
       player.collide(edges[2]);
       player.collide(edges[3]);
 
-    if (keyDown(UP_ARROW)) 
+    if (mousePressedOver(up)) 
       {
         player.y = player.y - 20;
       }
 
-    if (keyDown(DOWN_ARROW)) 
+    if (mousePressedOver(down)) 
       {
         player.y = player.y + 20;
       }
